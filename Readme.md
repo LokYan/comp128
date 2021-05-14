@@ -14,15 +14,18 @@ For the assignment, students are provided with a libcomp128.a (see Makefile) tha
 
 ## Sample Run of repository
 
-	lok@lok:~/Desktop/c128$ ls 
+	lok@lok:~/Desktop/comp128$ ls 
 	comp128.h  comp128.py  libcomp128.c  main.c  Makefile  Readme.md  run.sh
-	lok@lok:~/Desktop/c128$ make lib
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ make lib
 	gcc -I. -L. -c libcomp128.c -o libcomp128.o
 	ar rcs libcomp128.a libcomp128.o
-	lok@lok:~/Desktop/c128$ make
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ make
 	gcc -I. -L. -c main.c -o main.o
 	gcc -I. -L. main.o -lcomp128 -o main 
-	lok@lok:~/Desktop/c128$ python3 comp128.py 
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ python3 comp128.py 
 	Output from original program
 	A3A8(1D000000000000009900000000000000,048BC1EA93B0F82733D67C19267C91D6) = 80B3A76AD121F66903D0F800
 	
@@ -31,6 +34,14 @@ For the assignment, students are provided with a libcomp128.a (see Makefile) tha
 	Output from this script
 	A3A8(1D000000000000009900000000000000,048BC1EA93B0F82733D67C19267C91D6) = 80B3A76AD121F66903D0F800
 	A3A8(3E00000000000000C100000000000000,048BC1EA93B0F82733D67C19267C91D6) = 80B3A76AD121F66903D0F800
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ ./main 0x3E00000000000000C100000000000000 0 0x1D
+	3E00000000000000C100000000000000
+	80B3A76AD121F66903D0F800
+	1D000000000000009900000000000000
+	80B3A76AD121F66903D0F800
+	
 		
 
 

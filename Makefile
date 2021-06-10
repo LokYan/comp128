@@ -13,11 +13,16 @@ main: $(MAIN_OBJ)
 lib: $(LIB_OBJ)
 	ar rcs libcomp128.a libcomp128.o
 
+assignment: $(MAIN_OBJ)
+	$(CC) $(CFLAGS) $^ -lcomp128_assign -o $@
+
 clean:
 	rm -f *.o
 	rm -f main
+	rm -f assignment
 
 clean-all:
 	rm -f libcomp128.a
 	rm -f *.o
 	rm -f main
+	rm -f assignment

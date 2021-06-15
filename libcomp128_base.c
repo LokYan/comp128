@@ -209,7 +209,7 @@ void A3A8(/* in */ Byte rand[16], /* in */ Byte key[16],
     simoutput[4+7] = 0;
 }
 
-static const Byte key[16] = {0xFF, 0xEE, 0xDD, 0xCC, 
+Byte key[16] = {0xFF, 0xEE, 0xDD, 0xCC, 
 	                     0xBB, 0xAA, 0x99, 0x88,
 			     0x77, 0x66, 0x55, 0x44,
 			     0x33, 0x22, 0x11, 0x00};
@@ -367,5 +367,7 @@ void A3A8_Challenge(Byte rand[16], Byte simoutput[12])
     __asm__("nop");
     __asm__("nop");
     __asm__("nop");
+    A3A8(rand, key, simoutput);
+
 } 
 

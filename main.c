@@ -12,10 +12,14 @@ void printUsage(FILE* outf, char* argv0)
     fprintf(outf, "Usage: %s 0x<rand> 0x<key> \n", argv0);
     fprintf(outf, "  Computes COMP128 for <rand> and <key> \n");
     fprintf(outf, "\n");
+    fprintf(outf, "Usage: %s 0x<rand> \n", argv0);
+    fprintf(outf, "  Computes COMP128 for <rand> using built in key.\n");
+    fprintf(outf, "\n");
     fprintf(outf, "Usage: %s 0x<rand> bytePos [0x<start>] [0x<end>]\n", argv0);
-    fprintf(outf, "  Run COMP128 is brute force mode. User passes in a <rand> challenge.\n");
-    fprintf(outf, "    program iterates through all possible 2^16 combinations of values\n");
-    fprintf(outf, "    at bit positions bytePos and bytePos+8. \n");
+    fprintf(outf, "  Run COMP128 in brute force mode on built in key\n");
+    fprintf(outf, "    User passes in a <rand> challenge and the program \n");
+    fprintf(outf, "    iterates through all possible 2^16 combinations of values\n");
+    fprintf(outf, "    at byte positions bytePos and bytePos+8. \n");
     fprintf(outf, "  [0x<start>] and [0x<end>] are optional. \n");
     fprintf(outf, "  Example: %s 0xCA00000000000000FE00000000000000 0 \n", argv0);
     fprintf(outf, "    Iterates from 0x00000000000000000000000000000000 to \n");
@@ -44,7 +48,7 @@ int main(int argc, char **argv)
     int i = 0;
     int j = 0;
 
-    if ( (argc < 3) 
+    if ( (argc < 2) 
          || (strlen(argv[1]) != 34)
          || (strncmp(argv[1], "0x", 2) != 0)
        ) 
@@ -59,7 +63,16 @@ int main(int argc, char **argv)
                  | hextoint(argv[1][2*i+3]);
     }
 
-    //process the COMP128 base case first
+    //first case where we are using built-in key
+    if (argc == 2) 
+    {
+        A3A8_Challenge(rand, simoutput);
+        printHex(simoutput, 12);
+        printf("\n");
+        return (0);
+    } 
+
+    //next process the COMP128 base case
     if ( strncmp(argv[2], "0x", 2) == 0 )
     {
         for (i=0; i<16; i++) 

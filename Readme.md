@@ -42,8 +42,24 @@ For the assignment, students are provided with a libcomp128.a (see Makefile) tha
 	1D000000000000009900000000000000
 	80B3A76AD121F66903D0F800
 	
-		
+## Other Modes of Operation
 
+This COMP128 program has three modes of operation in total: the brute force mode as shown above, the base mode where you can pass in both the random challenge and the key to use, and then there is the rand-only mode where you pass in the random challenge and the built-in key (the one that is being brute-forced is used). The brute force mode is useful for finding collisions, the base mode is good for finding the key and the rand-only mode is good for verifying that you have the right key.
+
+### Sample Run of other modes
+
+	lok@lok:~/Desktop/comp128$ ./main 0x12341234123412341234123412341234
+	9CD2E0434EE92690CE71D800
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ ./main 0x12341234123412341234123412341234 0x048bc1ea93b0f82733d67c19267c91d6
+	9CD2E0434EE92690CE71D800
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ ./main 0x00001234123412341234123412340000
+	136A205ED174EE8175944400
+	lok@lok:~/Desktop/comp128$
+	lok@lok:~/Desktop/comp128$ ./main 0x00001234123412341234123412340000 0x048bc1ea93b0f82733d67c19267c91d6
+	136A205ED174EE8175944400
 
 # LICENSE
 
